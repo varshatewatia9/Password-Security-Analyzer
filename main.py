@@ -51,7 +51,8 @@ if os.path.exists(history_file):
         print("Reusing passwords is not recommended.")
 
 common_passwords = ["password", "123456", "qwerty", "abc123", "letmein", "monkey", "welcome", "111111", "baseball", "iloveyou"]
-keyboard_patterns = ["qwerty", "asdfgh", "zxcvbn", "123456", "password", "asdfghjkl","1q2w3e4r", "qazwsx", "1qaz2wsx", "qwertyuiop"]
+keyboard_patterns = ["qwerty", "asdfgh", "zxcvbn", "123456","asdfghjkl","1q2w3e4r", "qazwsx", "1qaz2wsx", "qwertyuiop"]
+dictionary_words = ["hello","admin", "user", "login", "test", "guest", "root", "master","india","country"]
 
 score = 0
 
@@ -104,6 +105,10 @@ if email in password.lower() :
 for pattern in keyboard_patterns:
     if pattern in password.lower():
         print(f"Warning: Your password contains a common keyboard pattern '{pattern}'. Consider changing it to something more unique.")   
+        break
+for word in dictionary_words:
+    if word in password.lower():
+        print(f"Warning: Your password contains a common dictionary word '{word}'. Aviod using dictionary words in your password.")   
         break
 
 if score == 5:
