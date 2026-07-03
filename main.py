@@ -140,6 +140,17 @@ if charset > 0:
         print("Entropy Level: High (Strong Password)")
     else:
         print("Entropy Level: Excellent (Very Strong Password)")
+    if entropy < 28:
+        crack_time = "Less than a second"
+    elif entropy < 36:
+        crack_time = "Few minutes"
+    elif entropy < 60:  
+        crack_time = "Several days"
+    elif entropy < 80:
+        crack_time = "Several years"
+    else:
+        crack_time = "Several centuries"
+    print(f"Estimated Time to Crack: {crack_time}")
 
 print("\nCyberSecurity tip ")
 if score ==5 :
