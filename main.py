@@ -4,6 +4,7 @@ import requests
 import os 
 import getpass
 import math
+import customtkinter as ctk
 
 def check_password_breach(password):
     sha1_password = hashlib.sha1(password.encode()).hexdigest().upper()
@@ -32,7 +33,7 @@ def check_password_breach(password):
     print("\n✅ Good news!")
     print("This password was NOT found in the breach database.")
 
-print("=== Password Strength Checker v1.21111 ===")
+print("=== Password Strength Checker v2.1 ===")
 
 name = input("Enter your name: ").lower()
 email = input("Enter your email: ").lower()
