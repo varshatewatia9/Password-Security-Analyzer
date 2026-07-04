@@ -110,6 +110,13 @@ for word in dictionary_words:
     if word in password.lower():
         print(f"Warning: Your password contains a common dictionary word '{word}'. Aviod using dictionary words in your password.")   
         break
+repeat_found = False
+for i in range(len(password) - 2):
+    if password[i] == password[i + 1] == password[i + 2]:
+        repeat_found = True
+        break
+if repeat_found:
+     print("Warning: Your password contains repeated characters. Avoid using the same character in your password repeatedly.")
 
 if score == 5:
     strength = "Very Strong Password "
