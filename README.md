@@ -1,4 +1,4 @@
-# 🔐 Password Strength Checker
+# 🔐 Password Security Analyzer
 
 A Python-based cybersecurity project that analyzes password strength and helps users create safer passwords.
 
@@ -11,6 +11,8 @@ A Python-based cybersecurity project that analyzes password strength and helps u
 - Online Password Breach Checker (Have I Been Pwned API)
 - Save Password Report
 - Cybersecurity Tips
+- Entropy calculation
+- Suggestions for strong password
 
 ## Technologies Used
 
@@ -19,6 +21,7 @@ A Python-based cybersecurity project that analyzes password strength and helps u
 - GitHub
 - Requests
 - Hashlib
+- Tkinter GUI
 
 ## How to Run
 
@@ -35,7 +38,6 @@ A Python-based cybersecurity project that analyzes password strength and helps u
 ## Future Improvements
 
 - AI Password Analysis
-- GUI (Tkinter)
 - Flask Web Application
 - Password Manager
 - Password History Dashboard
