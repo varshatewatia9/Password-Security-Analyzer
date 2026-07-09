@@ -170,10 +170,21 @@ def analyze_password(password, name, email):
         generated_password += random.choice(all_charachters)
     result += f"\nGenerated Password: {generated_password}\n"
 
-    
+        # Save password hash if it has not been used before
+    if not os.path.exists(history_file):
+        with open(history_file, "w") as file:
+            file.write(password_hash + "\n")
+    else:
+        with open(history_file, "r") as file:
+            previous_passwords = file.read().splitlines()
+
+        if password_hash not in previous_passwords:
+            with open(history_file, "a") as file:
+                file.write(password_hash + "\n")
+
     result += "\nThank you for using the Password Strength Checker!"
     result += "\nDeveloped by Varsha Tewatia"
+
     return result
-    
 
     
