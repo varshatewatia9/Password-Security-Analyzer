@@ -35,6 +35,23 @@ password_entry = ctk.CTkEntry(
     show="*"
 )
 password_entry.pack(pady=15)
+show_password = ctk.BooleanVar()
+
+def toggle_password():
+    if show_password.get():
+        password_entry.configure(show="")
+    else:
+        password_entry.configure(show="*")
+
+show_checkbox = ctk.CTkCheckBox(
+    app,
+    text="Show Password",
+    variable=show_password,
+    command=toggle_password
+)
+
+show_checkbox.pack(pady=5)
+
 def analyze_clicked():
 
     password = password_entry.get()
