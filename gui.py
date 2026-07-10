@@ -62,6 +62,27 @@ def analyze_clicked():
 
     result.delete("1.0", "end")
     result.insert("1.0", output)
+    score = 0
+
+    if len(password) >= 8:
+        score += 1
+    if any(c.isupper() for c in password):
+        score += 1
+    if any(c.islower() for c in password):
+        score += 1
+    if any(c.isdigit() for c in password):
+        score += 1
+    if any(not c.isalnum() for c in password):
+        score += 1
+
+    progress.set(score / 5)
+
+    if score <= 2:
+        strength_label.configure(text="🔴 Password Strength: Weak")
+    elif score <= 4:
+        strength_label.configure(text="🟡 Password Strength: Medium")
+    else:
+        strength_label.configure(text="🟢 Password Strength: Strong")
 
 analyze_btn = ctk.CTkButton(
     app,
@@ -69,7 +90,16 @@ analyze_btn = ctk.CTkButton(
     command=analyze_clicked
 )
 analyze_btn.pack(pady=10)
+progress = ctk.CTkProgressBar(app, width=400)
+progress.set(0)
+progress.pack(pady=10)
 
+strength_label = ctk.CTkLabel(
+    app,
+    text="Password Strength: Not Checked",
+    font=("Arial", 16, "bold")
+)
+strength_label.pack(pady=5)
 result = ctk.CTkTextbox(
     app,
     width=700,
