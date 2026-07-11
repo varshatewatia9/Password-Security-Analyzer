@@ -78,6 +78,16 @@ def analyze_clicked():
     email = email_entry.get().lower()
 
     output = analyze_password(password, name, email)
+    
+    requirements = ""
+
+    requirements += "✔ Uppercase\n" if any(c.isupper() for c in password) else "✖ Uppercase\n"
+    requirements += "✔ Lowercase\n" if any(c.islower() for c in password) else "✖ Lowercase\n"
+    requirements += "✔ Number\n" if any(c.isdigit() for c in password) else "✖ Number\n"
+    requirements += "✔ Symbol\n" if any(not c.isalnum() for c in password) else "✖ Symbol\n"
+    requirements += "✔ Minimum Length (12)" if len(password) >= 12 else "✖ Minimum Length (12)"
+
+    requirements_label.configure(text=requirements)
 
     result.delete("1.0", "end")
     result.insert("1.0", output)
@@ -147,6 +157,14 @@ strength_label = ctk.CTkLabel(
     font=("Poppins", 16, "bold")
 )
 strength_label.pack(pady=5)
+
+requirements_label = ctk.CTkLabel(
+    main_frame,
+    text="",
+    font=("Poppins", 14),
+    justify="left"
+)
+requirements_label.pack(pady=5)
 
 save_btn = ctk.CTkButton(
     main_frame,
