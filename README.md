@@ -13,6 +13,8 @@ A Python-based cybersecurity project that analyzes password strength and helps u
 - Cybersecurity Tips
 - Entropy calculation
 - Suggestions for strong password
+- View history
+- Save password Report
 
 ## Technologies Used
 
