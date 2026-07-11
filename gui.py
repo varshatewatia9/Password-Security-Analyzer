@@ -1,4 +1,5 @@
 import customtkinter as ctk
+import tkinter.messagebox
 from tkinter import filedialog
 from main import analyze_password 
 
@@ -78,7 +79,7 @@ def analyze_clicked():
     email = email_entry.get().lower()
 
     output = analyze_password(password, name, email)
-    
+
     requirements = ""
 
     requirements += "✔ Uppercase\n" if any(c.isupper() for c in password) else "✖ Uppercase\n"
@@ -128,6 +129,22 @@ def save_report():
         if file_path:
             with open(file_path, "w", encoding="utf-8") as file:
                 file.write(report)
+
+def view_history():
+    try:
+        with open(history_file,"r") as file:
+            history = file.read()
+        history_window = ctk.CTkToplevel(app)
+        history_window.title("Password Analysis History")
+        history_window.geometry("700x500")
+
+        textbox = ctk.CTkTextbox(history_window, width=650, height=400, font=("Poppins", 14))
+        textbox.pack(padx=20,pady=20)
+        textbox.insert("1.0", history)
+        textbox.configure(state="disabled")
+
+    except FileNotFoundError:
+        messagebox.showinfo("History","No password history found.")
 
 analyze_btn = ctk.CTkButton(
     main_frame,
@@ -188,6 +205,19 @@ report_frame = ctk.CTkFrame(
     border_width=2,
     border_color="#00E5FF"
 )
+
+history_btn = ctk.CTkButton(
+    main_frame,
+    text="📜 View History",
+    command=view_history,
+    width=240,
+    height=45,
+    corner_radius=12,
+    font=("Poppins", 16,"bold"),
+    fg_color="#0077B6",
+    hover_color="#023E8A"
+)
+history_btn.pack(pady=5)
 
 report_frame.pack(pady=15)
 report_frame.pack_propagate(False)
