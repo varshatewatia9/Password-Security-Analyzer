@@ -89,6 +89,11 @@ show_checkbox.pack(pady=5)
 def analyze_clicked():
 
     password = password_entry.get()
+
+    if password == "":
+        tkinter.messagebox.showwarning(
+            "Empty Password ", "Please enter a password to analyze.")
+        return
     name = name_entry.get().lower()
     email = email_entry.get().lower()
 
