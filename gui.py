@@ -127,7 +127,23 @@ def analyze_clicked():
         strength_label.configure(text="🟡 Password Strength: Medium")
     else:
         strength_label.configure(text="🟢 Password Strength: Strong")
-       
+
+def clear_fields():
+    name_entry.delete(0, "end")
+    email_entry.delete(0, "end")
+    password_entry.delete(0, "end")
+
+    result.delete("1.0", "end")
+    progress.set(0)
+
+    strength_label.configure(
+        text="📊 Password Strength: Not Checked") 
+    
+    requirements_label.configure(text="") 
+
+    char_count_label.configure(
+        text="Password Length: 0")  
+
 def save_report():
 
     report = result.get("1.0", "end").strip()
@@ -232,6 +248,19 @@ history_btn = ctk.CTkButton(
     hover_color="#023E8A"
 )
 history_btn.pack(pady=5)
+
+clear_btn = ctk.CTkButton(
+    main_frame,
+    text="🧹 Clear All",
+    command=clear_fields,
+    width=240,
+    height=45,
+    corner_radius=12,
+    font=("Poppins", 16,"bold"),
+    fg_color="#0077B6",
+    hover_color="#023E8A"
+)
+clear_btn.pack(pady=5)
 
 report_frame.pack(pady=15)
 report_frame.pack_propagate(False)
