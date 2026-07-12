@@ -55,7 +55,21 @@ password_entry = ctk.CTkEntry(
     show="*"
 )
 password_entry.pack(pady=15)
+char_count_label = ctk.CTkLabel(
+    main_frame,
+    text="Password Length: 0",
+    font=("Poppins", 14)
+)
+char_count_label.pack()
+
 show_password = ctk.BooleanVar()
+def update_char_count(event=None):
+    password = password_entry.get()
+    char_count_label.configure(
+        text=f"Password Length: {len(password)} characters"
+        )
+password_entry.bind("<KeyRelease>", 
+                    update_char_count)
 
 def toggle_password():
     if show_password.get():
